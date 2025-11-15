@@ -1,0 +1,187 @@
+/* Общие стили для современного монохромного дизайна */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding-top: 70px; /* Отступ, чтобы контент не перекрывался шапкой */
+    background-color: #f0f0f0;
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+/* Шапка и Навигация */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000; /* Черный фон шапки */
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* **ИСПРАВЛЕНИЕ: Новый контейнер для предотвращения выхода за границы** */
+.header-content {
+    width: 100%; /* Занимает всю ширину .navbar */
+    max-width: 1200px; /* Ограничиваем максимальную ширину */
+    margin: 0 auto; /* Центрируем содержимое */
+    padding: 10px 20px; /* Уменьшаем внутренние отступы для узких экранов */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Позволяет элементам переноситься при необходимости */
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar nav ul li {
+    margin-left: 25px;
+}
+
+.nav-link {
+    color: white !important; /* Явно задаем цвет */
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #aaaaaa !important;
+}
+
+.nav-link:hover:after {
+    width: 100%;
+    left: 0;
+    background: #aaaaaa;
+}
+
+/* Секции Контента */
+.content-section {
+    padding: 80px 10%;
+    min-height: 80vh;
+    border-bottom: 1px solid #e0e0e0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.content-section:last-child {
+    border-bottom: none;
+}
+
+.content-section h2 {
+    color: #000000;
+    font-weight: 300;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+}
+
+.content-section p {
+    line-height: 1.8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+}
+
+/* Анимация при скролле */
+.content-section.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Стиль для Мини-меню Звука */
+.sound-control-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Уменьшим расстояние между элементами */
+    padding: 0;
+    color: white;
+}
+
+#toggle-sound-btn {
+    background-color: #333;
+    color: white;
+    border: 1px solid white;
+    padding: 8px 10px; /* Немного уменьшим отступы */
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap; /* Запрещаем перенос текста кнопки */
+}
+
+#toggle-sound-btn:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+#volume-slider {
+    width: 70px; /* Немного уменьшим ширину ползунка */
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    background: #555;
+    border-radius: 5px;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border: 1px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* **Медиазапрос для узких экранов (смартфонов)** */
+@media (max-width: 768px) {
+    /* На узких экранах делаем шапку вертикальной */
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    .navbar nav ul {
+        gap: 15px;
+    }
+
+    /* Меню громкости разместим в одну линию */
+    .sound-control-menu {
+        width: 100%; /* Занимает всю ширину */
+        justify-content: space-between;
+    }
+    
+    body {
+        padding-top: 120px; /* Увеличим отступ, так как шапка будет выше */
+    }
+}
